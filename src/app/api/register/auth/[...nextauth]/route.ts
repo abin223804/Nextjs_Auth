@@ -38,7 +38,7 @@ export const authOptions: any = {
             }
           }
           // return null;
-        } catch (error) {
+        } catch (error:any) {
           throw new Error(error);
         }
       },

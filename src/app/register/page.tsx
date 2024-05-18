@@ -51,7 +51,7 @@ const Register = () => {
       if (res.status === 200) {
         setSuccess("Successfully Registered");
 
-     router.push('/login')
+        router.push("/login");
       }
     } catch (error) {
       setError("Error,..try again");
