@@ -3,19 +3,15 @@
 import React from "react";
 import { useState } from "react";
 import Link from "next/link";
-// import { useRouter } from "next/router";
-
+import { useRouter } from "next/navigation";
 const Register = () => {
-
   const [error, setError] = useState("");
-  const[success, setSuccess] = useState("")
-//   const router = useRouter();
+  const [success, setSuccess] = useState("");
 
-
+  const router = useRouter();
 
   const isvalidEmail = (email: string) => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    
 
     return emailRegex.test(email);
   };
@@ -27,13 +23,13 @@ const Register = () => {
     const password = e.target[1].value;
 
     if (!isvalidEmail(email)) {
-        setError("This email is invalid");
+      setError("This email is invalid");
 
       return;
     }
 
     if (!password || password.length < 8) {
-        setError("This password is invalid");
+      setError("This password is invalid");
 
       return;
     }
@@ -55,7 +51,7 @@ const Register = () => {
       if (res.status === 200) {
         setSuccess("Successfully Registered");
 
-        // router.push("/login");
+     router.push('/login')
       }
     } catch (error) {
       setError("Error,..try again");
@@ -86,7 +82,7 @@ const Register = () => {
                 name="email"
                 id="email"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="name@company.com"
+                placeholder="Enter your email"
                 required
               />
             </div>
@@ -101,7 +97,7 @@ const Register = () => {
                 type="password"
                 name="password"
                 id="password"
-                placeholder="••••••••"
+                placeholder="Enter your password (minimum 8 characters)"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required
               />
@@ -113,9 +109,10 @@ const Register = () => {
             >
               Create an account
             </button>
-            <p className="text-red-600 text-[16px] mb-4">{error && error} </p> 
-            <p className="text-green-600 text-[16px] mb-4">{success && success} </p> 
-
+            <p className="text-red-600 text-[16px] mb-4">{error && error} </p>
+            <p className="text-green-600 text-[16px] mb-4">
+              {success && success}{" "}
+            </p>
 
             <Link href="/login">
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
